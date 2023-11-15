@@ -220,7 +220,7 @@
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-11-15</time>
+            <time>2023-11-16</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
@@ -239,32 +239,20 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <font color=blue>
-* 醌氢醌饱和溶液与铂电极构成完整的醌氢醌电极，其电极电势为
-$$\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{a_{H2Q}}{a_Q*{a_{H^+}^2} } }(1) $$
-
-- 醌和氢醌在水中微溶，可视为浓度相等，且活度系数大致相等，则$$a_{H2Q}≈a_Q$$
-
-+ 因此上式可以简化
-$$\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{1}{ {a_{H^+} }^2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH (2)$$
-</font>
-
-<font color=green>
-该电极与参比电极（如甘汞电极）组成电池,则：
-$$E=\psi_{Q/H2Q}-\psi_{Hg/Hg_{2}Cl_{2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH-\psi_{Hg/Hg_{2}Cl_{2}} (3)$$ 
-</font>
-
-<font color=red>
-若用已知pH值的缓冲溶液（pHs）组成电池1，测得其电动势为Es,则电池1：
-$$E_s=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_s-\psi_{Hg/Hg_{2}Cl_{2}}$$
-再用待测溶液（pHx）组成电池2，测得其电动势为Ex,则电池2：
-$$E_x=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_x-\psi_{Hg/Hg_{2}Cl_{2}}$$
-两式联立得：
-$$pH_x=pH_s+\frac{F(E_s-E_x)}{2.303RT}=pH_s+\frac{E_s-E_x}{1.984*10^{-4}T} (4)$$ 
-</font>
-
-
-<p>根据公式（4），测得Es和Ex后，根据标准溶液的pHs即可求得待测溶液的pHx值。<br>因此我们测得3次已知pH值pHs的缓冲溶液的Es,取其平均值，测得3次待测溶液pHx的Ex,取其平均值，而pHs可知，根据公式(4),我们可以求得待测溶液的pH</p>
+    <ul>
+<li>醌氢醌饱和溶液与铂电极构成完整的醌氢醌电极，其电极电势为<script type="math/tex; mode=display">\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{a_{H2Q}}{a_Q*{a_{H^+}^2} } }(1)</script></li>
+</ul>
+<ul>
+<li>醌和氢醌在水中微溶，可视为浓度相等，且活度系数大致相等，则<script type="math/tex">a_{H2Q}≈a_Q</script></li>
+</ul>
+<ul>
+<li>因此上式可以简化<script type="math/tex; mode=display">\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{1}{ {a_{H^+} }^2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH (2)</script></li>
+</ul>
+<p>该电极与参比电极（如甘汞电极）组成电池,则：</p>
+<script type="math/tex; mode=display">E=\psi_{Q/H2Q}-\psi_{Hg/Hg_{2}Cl_{2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH-\psi_{Hg/Hg_{2}Cl_{2}} (3)</script><p>若用已知pH值的缓冲溶液（pHs）组成电池1，测得其电动势为Es,则电池1：</p>
+<script type="math/tex; mode=display">E_s=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_s-\psi_{Hg/Hg_{2}Cl_{2}}</script><p>再用待测溶液（pHx）组成电池2，测得其电动势为Ex,则电池2：</p>
+<script type="math/tex; mode=display">E_x=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_x-\psi_{Hg/Hg_{2}Cl_{2}}</script><p>两式联立得：</p>
+<script type="math/tex; mode=display">pH_x=pH_s+\frac{F(E_s-E_x)}{2.303RT}=pH_s+\frac{E_s-E_x}{1.984*10^{-4}T} (4)</script><p>根据公式（4），测得Es和Ex后，根据标准溶液的pHs即可求得待测溶液的pHx值。<br>因此我们测得3次已知pH值pHs的缓冲溶液的Es,取其平均值，测得3次待测溶液pHx的Ex,取其平均值，而pHs可知，根据公式(4),我们可以求得待测溶液的pH</p>
 <pre class="line-numbers language-none"><code class="language-none">Es1_tol&#x3D;[float(i) for i in input(&quot;请输入已知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
 Es1&#x3D;0
 for i in range(len(Es1_tol)):
