@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>液态蒸气压的测定 | Hexo</title>
 
 
 
@@ -154,7 +154,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Hello World
+        液态蒸气压的测定
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -218,23 +218,23 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Hello World
+        液态蒸气压的测定
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-09-14</time>
+            <time>2023-11-15</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>7 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>73 words</span>
+            <span>1.6k words</span>
           </span>
           
         </section>
@@ -243,15 +243,115 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <h2 id="在这本篇中，我们将学习液态蒸气压的测定。"><a href="#在这本篇中，我们将学习液态蒸气压的测定。" class="headerlink" title="在这本篇中，我们将学习液态蒸气压的测定。"></a>在这本篇中，我们将学习液态蒸气压的测定。</h2><p><code>对于此篇，我们需要用到matplotlib、numpy和scipy等库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</code><br><pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
+from matplotlib import rcParams
+from scipy.interpolate import make_interp_spline
+from scipy.optimize import curve_fit
+np.set_printoptions(suppress&#x3D;True)
+
+import math
+config &#x3D; &#123;
+    &quot;font.family&quot;:&#39;serif&#39;,                   #设置字体家族
+    &quot;font.size&quot;: 12,                         #设置中文字体为宋体12号，英文字体为Times New Roman
+    &quot;mathtext.fontset&quot;:&#39;stix&#39;,
+    &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
+&#125;
+rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<p><code>计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code></p>
+<pre class="line-numbers language-none"><code class="language-none">#计算r值
+def rsquared(x, y):
+    slope, intercept, r_value, p_value, std_err &#x3D; stats.linregress(x, y)
+    #a、b、r
+    print(&quot;使用scipy库：a：&quot;,slope,&quot;b：&quot;, intercept,&quot;r：&quot;, r_value,&quot;r-squared：&quot;, r_value**2)
+    
+print(matplotlib.matplotlib_fname())              #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
+<ul>
+<li>在一定温度下，液相中能量足够的分子会克服液态分子间的引力向气相转移，这就是液体的蒸发，当气相中的气态分子失去能量后也会转移至液相，这个过程叫冷凝，液体的蒸发和冷凝是动态的过程，当蒸发速度和冷凝速度相等时，就达气-液两相平衡，两相平衡时液体水的化学势和气态水的化学势相等。</li>
+</ul>
+<ul>
+<li>对于纯液体，气液两相平衡时，K=1,φ=2,根据相律，f= K-φ+2=1,即纯液体的温度和压力只有一个自由变量。如温度固定，气相压力将是定值，此压力称为液体在该温度下的饱和蒸气压或蒸气压。如果压力保持恒定，温度也保持不变，此温度就是该压力下液体的沸点，如压力为大气压力就称为正常沸点。</li>
+</ul>
+<p>纯液体蒸气压和温度之间的关系符合克劳修斯-克拉珀龙(Clausius-Clapeyron)方程:</p>
+<script type="math/tex; mode=display">\frac{dp}{dT} = \frac{Δ_{Vap}H_{m}}{TΔV_{m}}（4-1）</script><p>式中：p为平衡温度时液体的饱和蒸气压，Pa；T为气液两相平衡温度，K；<script type="math/tex">{Δ_{Vap}H_{m}}</script> 为液体的摩尔蒸发焓，J/mol；<script type="math/tex">{ΔV_{m}}</script>为气相和液相的摩尔体积之差，<script type="math/tex">m^{3}</script>。如忽略液体体积，且假设气体符合理想气体状态方程，则<script type="math/tex">{ΔV_{m}}={ΔV_{m,g}}-{ΔV_{m,l}}≈RT/p</script>。对式(4-1) 可改写成:</p>
+<script type="math/tex; mode=display">\frac{dlnp}{dT} = \frac{Δ_{Vap}H_{m}}{RT^{2}}（4-2）</script><p>式中R为通用气体常数，<script type="math/tex">8.314J.K^{-1}mol^{-l}</script>。 此式在通常温度及压力不太大时成立，如果温度变化范围不大，<script type="math/tex">{Δ_{Vap}H_{m}}</script>可看成常量，积分上式得:</p>
+<script type="math/tex; mode=display">lnp = -\frac{Δ_{Vap}H_{m}}{R}\frac{1}{T} + C（4-3）</script><p>显然水的蒸气压与温度的关系为：<script type="math/tex">=p_{0}exp(-Δ_{vap}H_{m})/RT</script>，若以ln(p/[p])对1/T作图得一直线，其斜率为<script type="math/tex">-Δ_{vap}H_{m}/R</script>，故<script type="math/tex">Δ_{vap}H_{m}=- R*斜率</script>。</p>
+<ul>
+<li>本实验利用动态法测定水和水蒸气在气-液两相平衡时的压力和温度关系。</li>
+</ul>
+<ul>
+<li>在一密闭体系中，如压力一定，当水的液相和气相达到两相平衡时，体系的温度也将保持恒定，即可以通过观察密闭体系定压时的温度是否恒定来判断气液两相是否达到平衡状态。<br>在压力确定的密闭体系中，给水加热，水的温度将不断上升，当水和水蒸气两相平衡时，体系的温度和压力将保持不变，此压力即为该温度下水的饱和蒸气压，此温度也即为此压力下的沸点，同时读取温度和压力可得一组温度-压力数据。</li>
+</ul>
+<ul>
+<li>改变密闭体系的压力，气液两相将在另一温度和压力下达到平衡状态，这样就可以测量水的沸点和蒸气压关系，然后用ln(p/[p])对1/T作图，求得水在实验温度范围内的平均摩尔蒸发焓<script type="math/tex">(Δ_{vap}H_{m})</script>。</li>
+</ul>
+<p><code>输入实验数据，并处理实验数据。</code></p>
+<pre class="line-numbers language-none"><code class="language-none">#真空度(pa)
+p1 &#x3D; [-94.25,-91.59,-88.95,-85.35,-83.34,-81.81,-77.23]
+p1 &#x3D; np.array(p1)
+p &#x3D; p1 + 102.83
+p &#x3D; p * 1000
+
+#热力学温度(K)
+T &#x3D; [25,30,34,38,40,42,45]
+T &#x3D; np.array(T)
+T &#x3D; T + 273.15
+T1 &#x3D; 1 &#x2F; T<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">def runplt(size&#x3D;None):                           #设置绘图的标题、X&#x2F;Y轴等基本信息。
+    plt.figure(figsize&#x3D;(8,5))
+    plt.title(r&#39;The Relationship of $p - T$&#39;)
+    plt.xlabel(r&#39;$T \ &#x2F; \  \rm&#123;K&#125;$&#39;)
+    plt.ylabel(r&#39;$p \ &#x2F; \ \rm&#123;Pa&#125;$&#39;)
+    # plt.axis([0, 4.5,0.03, 0.07])
+    # plt.axis([])
+    return plt
+
+def funlog(T, a, b, d):
+    return a + 10 ** (b &#x2F; T + d)
+popt, pcov &#x3D; curve_fit(funlog, T, p,maxfev&#x3D;50000)
+r &#x3D; funlog(T, *popt)
+print(popt)
+
+p2 &#x3D; popt[0] + 10 ** (popt[1] &#x2F; T + popt[2])
+
+runplt()                       #拟合，绘制最终图像1
+plt.grid(zorder&#x3D;0)
+plt.scatter(T,p,c&#x3D;&#39;purple&#39;,marker&#x3D;&#39;o&#39;,label&#x3D;&#39;original datas&#39;,zorder&#x3D;3)
+plt.plot(T,p2,ls&#x3D;&#39;-&#39;,c&#x3D;&#39;orange&#39;,zorder&#x3D;2)
+plt.legend(loc&#x3D;&#39;upper left&#39;)
+plt.savefig(&#39;饱和蒸气压1.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>[ 2125.34007268 -2628.0003481     12.62717921]</p>
+<div align=center><img src="https://s3.bhimgs.com/i/2023/09/03/x88n8f.png" width = 800 /></div>
+
+<pre class="line-numbers language-none"><code class="language-none">def runplt1(size&#x3D;None):                          #设置绘图的标题、X&#x2F;Y轴等基本信息。
+    plt.figure(figsize&#x3D;(8,5))
+    plt.title(r&#39;The Relationship of $\ln&#123;p&#125; - 1&#x2F;T$&#39;)
+    plt.xlabel(r&#39;$1&#x2F;T \ &#x2F; \  \rm&#123;K&#125;^&#123;-1&#125;$&#39;)
+    plt.ylabel(r&#39;$\ln&#123;p&#125; \ &#x2F; \ \rm&#123;Pa&#125;$&#39;)
+    # plt.axis([0, 4.5,0.03, 0.07])
+    # plt.axis([])
+    return plt
+
+A &#x3D; np.polyfit(T1,np.log(p),1)
+B &#x3D; np.poly1d(A)
+print(B)
+print(5137*8.314)
+
+runplt1()                                          #拟合，绘制最终图像2
+plt.grid(zorder&#x3D;0)
+plt.scatter(T1,np.log(p),c&#x3D;&#39;purple&#39;,marker&#x3D;&#39;o&#39;,label&#x3D;&#39;original datas&#39;,zorder&#x3D;3)
+plt.plot(T1,B(T1),ls&#x3D;&#39;-&#39;,c&#x3D;&#39;orange&#39;,label&#x3D; r&#39;$\ln&#123;p&#125; &#x3D; \frac&#123;-5137&#125;&#123;T&#125;+ 26.28$&#39;,zorder&#x3D;2)
+plt.legend(loc&#x3D;&#39;upper right&#39;)
+plt.savefig(&#39;饱和蒸气压2.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
+rsquared(T1,np.log(p))
+plt.show()
+
+numpy.savetxt(&quot;new.csv&quot;, p1 * 1000, delimiter&#x3D;&#39;,&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> <font color=blue><br>-5137 x + 26.28<br>42709.018000000004<br>使用scipy库：a： -5137.445200371161 b： 26.27758767888698 r： -0.9992655568619622 r-squared： 0.9985316531306474</p>
+<div align=center><img src="https://s3.bhimgs.com/i/2023/09/03/x9gnqu.png" width = 800 /></div>
 
   </article>
   <!-- tag -->
@@ -262,13 +362,18 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2023/11/15/%E8%94%97%E7%B3%96%E8%BD%AC%E5%8C%96%E9%80%9F%E7%8E%87%E5%B8%B8%E6%95%B0%E7%9A%84%E6%B5%8B%E5%AE%9A/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          input
+          蔗糖转化速率常数的测定
         </a>
       
     </div>
     <div>
+      
+        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          input
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>

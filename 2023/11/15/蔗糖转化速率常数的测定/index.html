@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>蔗糖转化速率常数的测定 | Hexo</title>
 
 
 
@@ -154,7 +154,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Hello World
+        蔗糖转化速率常数的测定
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -218,23 +218,23 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Hello World
+        蔗糖转化速率常数的测定
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-09-14</time>
+            <time>2023-11-15</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>6 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>73 words</span>
+            <span>1.3k words</span>
           </span>
           
         </section>
@@ -243,15 +243,120 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <h2 id="在这本篇中，我们将学习蔗糖转化速率常数的测定。"><a href="#在这本篇中，我们将学习蔗糖转化速率常数的测定。" class="headerlink" title="在这本篇中，我们将学习蔗糖转化速率常数的测定。"></a>在这本篇中，我们将学习蔗糖转化速率常数的测定。</h2><ul>
+<li>对于此篇，我们需要用到matplotlib、numpy和scipy库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
+from matplotlib import rcParams
+from scipy.interpolate import make_interp_spline
+from scipy.optimize import curve_fit
+np.set_printoptions(suppress&#x3D;True)
+from sympy import *
+import math
+config &#x3D; &#123;
+    &quot;font.family&quot;:&#39;serif&#39;,             #设置字体家族
+    &quot;font.size&quot;: 12,                   #设置中文字体为宋体12号，英文字体为Times New Roman
+    &quot;mathtext.fontset&quot;:&#39;stix&#39;,
+    &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
+&#125;
+rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
+    xBar &#x3D; np.mean(X)
+    yBar &#x3D; np.mean(Y)
+    SSR &#x3D; 0
+    varX &#x3D; 0
+    varY &#x3D; 0
+    for i in range(0, len(X)):
+        diffXXBar &#x3D; X[i] - xBar
+        diffYYBar &#x3D; Y[i] - yBar
+        SSR +&#x3D; (diffXXBar * diffYYBar)
+        varX +&#x3D; diffXXBar ** 2
+        varY +&#x3D; diffYYBar ** 2
+
+    SST &#x3D; math.sqrt(varX * varY)
+    print(&quot;r：&quot;, SSR &#x2F; SST, &quot;r-squared：&quot;, (SSR &#x2F; SST) ** 2)
+    return
+
+print(matplotlib.matplotlib_fname())                #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<p>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
+<ul>
+<li>蔗糖水溶液在有氢离子存在时发生水解反应：</li>
+</ul>
+<script type="math/tex; mode=display">C_{12}H_{22}O_{11}(蔗糖) + H_{2}O  \rightarrow C_{6}H_{12}O_{6}(葡萄糖) + C_{6}H_{12}O_{6}(果糖)</script><ul>
+<li>其速率方程为：</li>
+</ul>
+<script type="math/tex; mode=display">-\frac{dc_{C_{12} H_{22} O_{11}}}{dt} = k_{2}c_{C_{12} H_{22} O_{11}}c_{H_{2}O}</script><ul>
+<li>当氢离子浓度一定，蔗糖溶液较稀时，因为作为溶剂的水的浓度可以认为基本不变，可以合并进常数项，这时蔗糖水解为假一级反应，其速率方程可写为:</li>
+</ul>
+<script type="math/tex; mode=display">-\frac{dc_{C_{12} H_{22} O_{11}}}{dt} = kc_{C_{12} H_{22} O_{11}}</script><ul>
+<li>令c<script type="math/tex">_{0}</script>为蔗糖开始的浓度，c$_{t}$为反应t时刻的蔗糖浓度，将上式积分可得到:</li>
+</ul>
+<script type="math/tex; mode=display">ln\frac{c_{0}}{c_{t}} = kt</script><ul>
+<li>只要Inc<script type="math/tex">_{t}</script>对t作图得到直线关系，就可证明蔗糖稀溶液的水解为一级反应，并可从直线的斜率求得速率常数k。<br>当反应物浓度由c<script type="math/tex">_{0}</script>降至c=<script type="math/tex">-\frac{1}{2}$c$_{0}</script>时，所用时间称为反应的半衰期，用t<script type="math/tex">_{1/2}</script>表示: </li>
+</ul>
+<script type="math/tex; mode=display">t_{1/2} = \frac{ln2}{k}</script><ul>
+<li>随着反应的进行，蔗糖的浓度逐渐降低至水解完全，即c<script type="math/tex">_{∞}</script>=0，葡萄糖和果糖的浓度逐渐增大，且果糖的左旋程度远大于葡萄糖的右旋程度，所以在水解过程中，溶液的旋光方向将逐渐由右旋变为左旋。</li>
+</ul>
+<ul>
+<li>因为：</li>
+</ul>
+<script type="math/tex; mode=display">ɑ = ɑ_{蔗糖} + ɑ_{葡萄糖} + ɑ_{果糖}</script><ul>
+<li>设ɑ<script type="math/tex">_{0}</script>为t=0时溶液的旋光度，ɑ<script type="math/tex">_{t}</script>为时间t时混合溶液的旋光度,ɑ<script type="math/tex">_{∞}</script>为水解完全时溶液的旋光度，则：</li>
+</ul>
+<script type="math/tex; mode=display">ɑ_{t} = K_{蔗糖}(c_{0} + K_{葡萄糖}(c_{0}-c_{t}) + K_{蔗糖}(c_{0}-c_{t})</script><script type="math/tex; mode=display">ɑ_{0} = K_{蔗糖}c_{0}</script><script type="math/tex; mode=display">ɑ_{0} = K_{葡萄糖}c_{0} + K_{果糖}c_{0}</script><ul>
+<li>联立上面三式，消去K，得：</li>
+</ul>
+<script type="math/tex; mode=display">\frac{c_{0}}{c_{t}} = \frac{(ɑ_{0}-ɑ_{∞})}{(ɑ_{t}-ɑ_{∞})}</script><p>将上式代入即得：</p>
+<script type="math/tex; mode=display">k = \frac{1}{t}In(\frac{ɑ_{0}-ɑ_{∞}}{ɑ_{t}-ɑ_{∞}})</script><script type="math/tex; mode=display">In(ɑ_{t}-ɑ_{∞}) = -kt + ln(ɑ_{0}-ɑ_{∞})</script><p><script type="math/tex">In(ɑ$_{t}$-ɑ$_{∞}$)</script>对t作图得一直线，由直线的斜率即可算出反应速率常数k。</p>
+<p><code>输入实验数据，并处理实验数据。</code><br><pre class="line-numbers language-none"><code class="language-none">t &#x3D; [5,10,15,20,30,40,50,60]
+
+a &#x3D; [11.20,10.50,9.85,9.20,8.10,6.95,6.05,5.15]
+a &#x3D; np.array(a)
+a &#x3D; a + 2.85
+print(&#39;a修正&#39;)
+print(a)              #得到修正后的数据
+
+ai &#x3D; [-4.60]
+ai &#x3D; np.array(ai)
+a1 &#x3D; a - ai
+print(&#39;at-a∞&#39;)
+print(a1)
+a2 &#x3D; np.log(a1)
+print(&#39;ln&#39;)
+print(a2)
+
+A &#x3D; np.polyfit(t,a2,1)
+B &#x3D; np.poly1d(A)
+print(&#39;图像的拟合函数：&#39;)
+print(B)                         #得到图像的拟合函数
+D &#x3D; B.deriv()
+print(&#39;求导之后得到斜率：&#39;)
+print(D)                         #得到求导之后的斜率
+computeCorrelation(t, a2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<p>a修正<br>[14.05 13.35 12.7  12.05 10.95  9.8   8.9   8.  ]<br>at-a\infty<br>[18.65 17.95 17.3  16.65 15.55 14.4  13.5  12.6 ]<br>ln<br>[2.92584615 2.88759011 2.8507065  2.81241022 2.74406064 2.66722821<br> 2.60268969 2.53369681]<br>图像的拟合函数：</p>
+<p>-0.007129 x + 2.958<br>求导之后得到斜率：</p>
+<p>-0.007129<br>r： -0.999760168751737 r-squared： 0.9995203950225017</p>
+<pre class="line-numbers language-none"><code class="language-none">def runplt(size&#x3D;None):                            #设置绘图的标题、X&#x2F;Y轴等基本信息
+    plt.figure(figsize&#x3D;(12,7.5))
+    plt.title(r&#39;The Figure of $\ln&#123;(\alpha_&#123;t&#125; - \alpha_&#123;\infty&#125;)&#125;-t$&#39;)
+    plt.xlabel(r&#39;$t \  &#x2F; \ \rm&#123;min&#125;$&#39;)
+    plt.ylabel(r&#39;$\ln&#123;(\alpha_&#123;t&#125; - \alpha_&#123;\infty&#125;)&#125;$&#39;)
+    # plt.axis([0, 4.5,0.03, 0.07])
+    # plt.axis([])
+    return plt
+
+plt&#x3D;runplt()                         #绘制最终图像
+plt.grid(zorder&#x3D;0)
+plt.scatter(t,a2,c&#x3D;&#39;purple&#39;,marker&#x3D;&#39;o&#39;,label&#x3D;&#39;$Original \ Datas$&#39;,zorder&#x3D;3)
+plt.plot(np.arange(0,95,1),B(np.arange(0,95,1)),ls&#x3D;&#39;--&#39;,c&#x3D;&#39;orange&#39;,label&#x3D;r&#39;$After \ linear \ fitting:\ln&#123;(\alpha_&#123;t&#125; - \alpha_&#123;\infty&#125;)&#125; &#x3D;-0.01583t + 2.918\quad R^&#123;2&#125; &#x3D; 0.993$&#39;,zorder&#x3D;2)
+for X, y in zip(t, a2):
+    plt.text(X+1, y, (X,np.around(y,2)),ha&#x3D;&#39;left&#39;, va&#x3D;&#39;bottom&#39;, fontsize&#x3D;6)
+plt.legend(loc&#x3D;&#39;upper right&#39;)
+plt.savefig(&#39;ffigg.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div align=center><img src="https://s2.wzznft.com/i/2023/08/31/qrzo3g.png" width = 800 /></div>
 
   </article>
   <!-- tag -->
@@ -262,13 +367,18 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2023/11/15/%E4%BA%8C%E5%85%83%E7%9B%B8%E5%9B%BE/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          input
+          二元相图
         </a>
       
     </div>
     <div>
+      
+        <a href="/2023/11/15/%E6%B6%B2%E6%80%81%E8%92%B8%E6%B0%94%E5%8E%8B%E7%9A%84%E6%B5%8B%E5%AE%9A/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          液态蒸气压的测定
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>

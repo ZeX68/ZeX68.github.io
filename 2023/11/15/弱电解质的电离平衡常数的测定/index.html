@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>弱电解质的电离平衡常数的测定 | Hexo</title>
 
 
 
@@ -154,7 +154,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Hello World
+        弱电解质的电离平衡常数的测定
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -218,23 +218,23 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Hello World
+        弱电解质的电离平衡常数的测定
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-09-14</time>
+            <time>2023-11-15</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>6 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>73 words</span>
+            <span>1.4k words</span>
           </span>
           
         </section>
@@ -243,15 +243,107 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <h2 id="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"><a href="#在这本篇中，我们将学习弱电解质的电离平衡常数的测定。" class="headerlink" title="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"></a>在这本篇中，我们将学习弱电解质的电离平衡常数的测定。</h2><ul>
+<li>对于此篇，我们需要用到matplotlib、numpy和scipy等库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib
+from matplotlib import rcParams
+from scipy.interpolate import make_interp_spline
+from scipy.optimize import curve_fit
+np.set_printoptions(suppress&#x3D;True)
+
+import math
+config &#x3D; &#123;
+    &quot;font.family&quot;:&#39;serif&#39;,                   #设置字体家族
+    &quot;font.size&quot;: 12,                         #设置中文字体为宋体12号，英文字体为Times New Roman
+    &quot;mathtext.fontset&quot;:&#39;stix&#39;,
+    &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
+&#125;
+rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
+    xBar &#x3D; np.mean(X)
+    yBar &#x3D; np.mean(Y)
+    SSR &#x3D; 0
+    varX &#x3D; 0
+    varY &#x3D; 0
+    for i in range(0, len(X)):
+        diffXXBar &#x3D; X[i] - xBar
+        diffYYBar &#x3D; Y[i] - yBar
+        SSR +&#x3D; (diffXXBar * diffYYBar)
+        varX +&#x3D; diffXXBar ** 2
+        varY +&#x3D; diffYYBar ** 2
+
+    SST &#x3D; math.sqrt(varX * varY)
+    print(&quot;r：&quot;, SSR &#x2F; SST, &quot;r-squared：&quot;, (SSR &#x2F; SST) ** 2)
+    return<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<pre class="line-numbers language-none"><code class="language-none">print(matplotlib.matplotlib_fname())
+def runplt(size&#x3D;None):
+    plt.figure(figsize&#x3D;(8,5))
+    plt.title(r&#39;The Figure of $\ \frac&#123;c\Lambda_&#123;m&#125;&#125;&#123;c^&#123;\ominus&#125;&#125;$ - $\frac&#123;1&#125;&#123;\Lambda_&#123;m&#125;&#125;$&#39;)
+    plt.xlabel(r&#39;$\frac&#123;1&#125;&#123;\Lambda_&#123;m&#125;&#125;\ $&#x2F; mol$\cdot \rm&#123;S&#125;^&#123;-1&#125;\cdot \rm&#123;m&#125;^&#123;2&#125;$&#39;)
+    plt.ylabel(r&#39;$\frac&#123;c\Lambda_&#123;m&#125;&#125;&#123;c^&#123;\ominus&#125;&#125;\ $&#x2F; $\rm&#123;S&#125;\cdot\rm&#123;m&#125;^&#123;2&#125;\cdot\rm&#123;mol&#125;^&#123;-1&#125;$&#39;)
+    # plt.axis([0, 4.5,0.03, 0.07])
+    # plt.axis([])
+    return plt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(此处输出的是笔者)<br>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
+<ul>
+<li>电解质溶液是指溶质溶于溶剂后全部或部分电离成离子后形成的溶液，电解质溶液是第二类导体，它依靠离子的定向迁移而导电。</li>
+<li>其导电能力用电导G衡量，为电阻R的倒数，量钢为S（Siemens，西门子）或Ω$^{-1}$，即<div align=center><img src="https://s3.bhimgs.com/i/2023/08/31/t1nne5.png" width = 800 /></div>
+
+</li>
+</ul>
+<p>式中κ为电导率，S/m；ρ为电阻率，Ω•m；l为导体的长度，m；A为导体的截面积，m$^{2}$。</p>
+<ul>
+<li>电解质溶液的电导率就是当电极间距离为1m，电极面积为1m$^{2}$时单位体积的溶液的电导。l/A是所使用的电导电极的常数，称为电导池常数,K$_{cell}$ = l/A，不便直接测量。可以先测量一个标准溶液的电阻，如KCl溶液，根据已知的电导率，从上式可以求出电导池常数。反之，根据待测溶液的电阻和电导池常数就可以求出待测溶液的电导率。<br>相距1m的两个平行板电极间放置含1mol电解质的溶液，其电导称为摩尔电导率ʌ$_{m}$。摩尔电导率和电导率的关系为<script type="math/tex; mode=display">ʌ_{m} = \frac{κ}{c}</script>式中，c为电解质溶液的体积摩尔浓度，mol/m$^{3}$；ʌ$_{m}$为溶液的摩尔电导率，（S•m$^{2}$）/mol。</li>
+</ul>
+<ul>
+<li>因此，由已知浓度溶液的电导率，即可求出其摩尔电导率。<br>无限稀释时的摩尔电导率ʌ$_{m}^{∞}$是ʌ$_{m}$在浓度外推到零时的极限值，ʌ$_{m}^{∞}$反映的是全部电离并且离子间没有相互作用时的溶液的导电能力。<br>对于强电解质，在任何浓度下都是全部电离的。<br>对于弱电解质，在一定浓度下是部分电离的，并且电离度随浓度降低不断增加，在无限稀释时全部电离。<br>弱电解质的ʌ$_{m}$反映的是部分电离的溶液的导电能力，如果弱电解质的电离度比较小，电离产生的离子浓度比较低，离子间相互作用可以忽略不计，那么ʌ$_{m}$与ʌ$_{m}^{∞}$的差别就可以近似看成是由部分电离与全部电离的离子数目不同所致，所以弱电解质的电离度$\alpha$可以表示为<script type="math/tex; mode=display">\alpha = \frac{ʌ_{m}}{ʌ_{m}^{∞}}</script></li>
+</ul>
+<p><code>输入实验数据，并处理实验数据。</code></p>
+<pre class="line-numbers language-none"><code class="language-none">c &#x3D; [0.01,0.02,0.03,0.04,0.05]
+c &#x3D; np.array(c)
+c &#x3D; 1000*c
+
+k &#x3D; [156.1,224,276,320,357]
+kh &#x3D; 2.50&#x2F;10000
+k &#x3D; np.array(k)
+k &#x3D; k&#x2F;10000
+
+lc &#x3D; 390.72&#x2F;10000
+k &#x3D; k-kh
+l &#x3D; k&#x2F;c
+y &#x3D; c*l
+y &#x3D; y&#x2F;1000
+x &#x3D; 1&#x2F;l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">A &#x3D; np.polyfit(x,y,1)
+B &#x3D; np.poly1d(A)
+print(&#39;图像的拟合函数：&#39;)
+print(B)
+D &#x3D; B.deriv()
+print(&#39;求导之后得到斜率：&#39;)
+print(D)
+print(&#39;标准电离平衡常数为斜率除以无限稀薄摩尔电导率的平方：&#39;)
+lc2 &#x3D; lc*lc
+D &#x3D; D&#x2F;lc2
+print(D)
+
+plt&#x3D;runplt()
+plt.grid(zorder&#x3D;0)
+plt.scatter(x,y,c&#x3D;&#39;purple&#39;,marker&#x3D;&#39;o&#39;,label&#x3D;&#39;original datas&#39;,zorder&#x3D;3)
+c2 &#x3D; np.linspace(600,1430,500)
+s2 &#x3D; make_interp_spline(x,B(x))(c2)
+plt.plot(c2,s2,ls&#x3D;&#39;--&#39;,c&#x3D;&#39;orange&#39;,label&#x3D;r&#39;Linear Fitting&#39;,zorder&#x3D;2)
+plt.legend(loc&#x3D;&#39;upper left&#39;)
+plt.savefig(&#39;Map.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>图像的拟合函数：</p>
+<p>2.657e-08 x - 1.867e-06<br>求导之后得到斜率：</p>
+<p>2.657e-08<br>标准电离平衡常数为斜率除以无限稀薄摩尔电导率的平方：</p>
+<p>1.741e-05</p>
+<div align=center><img src="https://s3.bhimgs.com/i/2023/08/31/stxggq.png" width = 800 /></div>
+
 
   </article>
   <!-- tag -->
@@ -262,13 +354,18 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2023/11/15/%E8%A1%A8%E9%9D%A2%E5%BC%A0%E5%8A%9B%E7%AD%89%E6%B8%A9%E7%BA%BF%E7%9A%84%E6%B5%8B%E5%AE%9A/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          input
+          表面张力等温线的测定
         </a>
       
     </div>
     <div>
+      
+        <a href="/2023/11/15/%E7%94%B5%E5%8A%A8%E5%8A%BF%E6%B3%95%E6%B5%8BPH%E5%92%8CKsp/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          电动势法测PH和Ksp
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>

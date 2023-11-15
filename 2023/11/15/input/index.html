@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>input | Hexo</title>
 
 
 
@@ -154,7 +154,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Hello World
+        input
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -218,23 +218,23 @@
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Hello World
+        input
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-09-14</time>
+            <time>2023-11-15</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>3 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>73 words</span>
+            <span>886 words</span>
           </span>
           
         </section>
@@ -243,15 +243,85 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <h2 id="本文将用于计算校准曲线，会向您介绍如何使用-python-绘制一组数据点的图形，然后将这些点拟合成函数。"><a href="#本文将用于计算校准曲线，会向您介绍如何使用-python-绘制一组数据点的图形，然后将这些点拟合成函数。" class="headerlink" title="本文将用于计算校准曲线，会向您介绍如何使用 python 绘制一组数据点的图形，然后将这些点拟合成函数。"></a>本文将用于计算校准曲线，会向您介绍如何使用 python 绘制一组数据点的图形，然后将这些点拟合成函数。</h2><ul>
+<li>重点是创建校准曲线，首先使用标准方法，然后使用标准添加方法。</li>
+</ul>
+<ul>
+<li>不过，在我们在 python 中做任何事情之前，最好先导入我们需要的库。</li>
+</ul>
+<ul>
+<li>本文中，我们将使用 numpy库 来进行非线性拟合，使用 matplotlib库 来创建我们的图形，并使用 scipy库 的统计包来计算线性拟合方式。</li>
+</ul>
+<p><code>导入库的代码如下：</code><br><pre class="line-numbers language-none"><code class="language-none">import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></p>
+<p>考虑一系列标准解决方案与仪器测量信号之间的以下关系：</p>
+<div align=center><img src="https://g1.bhimgs.com/i/2023/08/31/jx5kmi.png" width = 500 /></div>
+
+<ul>
+<li>为了创建校准曲线，我们首先创建两个列表。</li>
+</ul>
+<ul>
+<li>第一个是我们的x值，将是银离子浓度，第二个是我们的y值，将是信号。然后我们可以绘制这些点。</li>
+</ul>
+<p><code>绘制散点图的代码如下</code><br><pre class="line-numbers language-none"><code class="language-none">xrange &#x3D; [0,2,10,20,30,50,75,100,125,150]
+yrange &#x3D; [0,0.013,0.076,0.162,0.245,0.405,0.598,0.748,0.817,0.872]
+
+plt.plot(xrange,yrange,&#39;ro&#39;)
+plt.title(&quot;图1 - 信号与离子浓度的函数关系&quot;)
+plt.xlabel(&#39;银离子浓度（ppb）&#39;)
+plt.ylabel(&#39;测量的信号&#39;)
+plt.rcParams[&#39;font.sans-serif&#39;] &#x3D; [&#39;SimHei&#39;]
+
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<div align=center><img src="https://g1.bhimgs.com/i/2023/08/31/jzz259.png" width = 500 /></div>
+
+<ul>
+<li>现在，我将使用从 scipy 库的统计部分导入的 linregress（） 函数找到点的线性拟合。</li>
+</ul>
+<ul>
+<li>此外，由于校准曲线的上端有一些曲率，我将使用一个变量（我称之为 listend）来定义将包含在线性拟合中的最后一个点。</li>
+</ul>
+<p><code>数据拟合并绘出图像的代码如下</code><br><pre class="line-numbers language-none"><code class="language-none">listend &#x3D; len(xrange)-1
+xsubrange &#x3D; xrange[0:listend]
+ysubrange &#x3D; yrange[0:listend]
+slope,intercept,r,tt,stderr&#x3D;stats.linregress(xsubrange,ysubrange)
+print(&quot;拟合的线性方程为 y &#x3D; &#123;0:1.4E&#125; x + &#123;1:1.4E&#125;，R的平方为 &#123;2:1.5f&#125;。&quot;.format(slope, intercept, r**2))
+linfit &#x3D; [i*slope + intercept for i in xsubrange]
+
+plt.plot(xrange,yrange,&#39;ro&#39;)
+plt.plot(xsubrange,linfit,&#39;b-&#39;)
+plt.title(&quot;图2 - 数据的线性拟合&quot;)
+plt.xlabel(&#39;银离子浓度（ppb）&#39;)
+plt.ylabel(&#39;测量的信号&#39;)
+plt.rcParams[&#39;font.sans-serif&#39;] &#x3D; [&#39;SimHei&#39;]
+
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<p>拟合的线性方程为 y = 6.9437E-03 x + 2.2576E-02，R的平方为 0.98481。</p>
+<div align=center><img src="https://g1.bhimgs.com/i/2023/08/31/jzywxl.png" width = 500 /></div>
+尝试使用listend变量，看看改变我们绘制的点如何改变线性拟合的R值。
+
+* 此外，更改图形，使点为蓝色圆圈，线为红色虚线。您需要使用上面代码单元格中的两个 plt.plot（） 函数进行这些更改。
+
+- 现在让我们尝试将其拟合到高阶多项式。请记住，您应该有一个理由将数据拟合到高阶多项式，但有时需要这样做。
+
++ 下面，我将展示如何使用 numpy 库中的 polyfit 函数将数据点拟合到 2阶多项式，而不仅仅是一条线。
+
+`添加图例等细节`
+<pre class="line-numbers language-none"><code class="language-none">two_deg_fit &#x3D; np.polyfit(xrange,yrange,2)
+print(&quot;此函数的曲线拟合为 y &#x3D; &#123;0:.2E&#125; x^2 + &#123;1:.2E&#125; x + &#123;2:.2E&#125;。&quot;.format(two_deg_fit[0], two_deg_fit[1], two_deg_fit[2]))
+curvefit &#x3D; [two_deg_fit[0]*i**2 + two_deg_fit[1]*i + two_deg_fit[2] for i in xrange]
+
+plt.plot(xrange,yrange,&#39;ro&#39;)
+plt.plot(xrange,curvefit,&#39;b-&#39;)
+plt.title(&quot;图 3 - 数据的二阶多项式拟合&quot;)
+plt.xlabel(&#39;银离子浓度（ppb）&#39;)
+plt.ylabel(&#39;测量的信号&#39;)
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+此函数的曲线拟合为 y = -2.78E-05 x^2 + 1.02E-02 x + -1.74E-02。
+<div align=center><img src="https://g1.bhimgs.com/i/2023/08/31/jzywxl.png" width = 500 /></div>
+
 
   </article>
   <!-- tag -->
@@ -262,13 +332,18 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2023/11/15/%E6%B6%B2%E6%80%81%E8%92%B8%E6%B0%94%E5%8E%8B%E7%9A%84%E6%B5%8B%E5%AE%9A/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          input
+          液态蒸气压的测定
         </a>
       
     </div>
     <div>
+      
+        <a href="/2023/09/14/hello-world/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          Hello World
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>

@@ -15,7 +15,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>电动势法测PH和Ksp | Hexo</title>
 
 
 
@@ -154,7 +154,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Hello World
+        电动势法测PH和Ksp
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -209,32 +209,28 @@
 
 <!-- toc -->
 
-  <!-- tocbot -->
-<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
-
-
 <section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Hello World
+        电动势法测PH和Ksp
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-09-14</time>
+            <time>2023-11-15</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>5 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>73 words</span>
+            <span>1.1k words</span>
           </span>
           
         </section>
@@ -243,16 +239,84 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+    <ul>
+<li>醌氢醌饱和溶液与铂电极构成完整的醌氢醌电极，其电极电势为<script type="math/tex; mode=display">\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{a_{H2Q}}{a_Q*{a_{H^+}^2} } }(1)</script></li>
+</ul>
+<ul>
+<li>醌和氢醌在水中微溶，可视为浓度相等，且活度系数大致相等，则<script type="math/tex">a_{H2Q}≈a_Q</script></li>
+</ul>
+<ul>
+<li>因此上式可以简化<script type="math/tex; mode=display">\psi_{Q/H2Q}=\psi_{Q/H2Q}^θ-\frac{RT}{2F}*In{\frac{1}{ {a_{H^+} }^2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH (2)</script></li>
+</ul>
+<p>该电极与参比电极（如甘汞电极）组成电池,则：</p>
+<script type="math/tex; mode=display">E=\psi_{Q/H2Q}-\psi_{Hg/Hg_{2}Cl_{2}}=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH-\psi_{Hg/Hg_{2}Cl_{2}} (3)</script><p>若用已知pH值的缓冲溶液（pHs）组成电池1，测得其电动势为Es,则电池1：</p>
+<script type="math/tex; mode=display">E_s=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_s-\psi_{Hg/Hg_{2}Cl_{2}}</script><p>再用待测溶液（pHx）组成电池2，测得其电动势为Ex,则电池2：</p>
+<script type="math/tex; mode=display">E_x=\psi_{Q/H2Q}^θ-\frac{2.303RT}{F}*pH_x-\psi_{Hg/Hg_{2}Cl_{2}}</script><p>两式联立得：</p>
+<script type="math/tex; mode=display">pH_x=pH_s+\frac{F(E_s-E_x)}{2.303RT}=pH_s+\frac{E_s-E_x}{1.984*10^{-4}T} (4)</script><p>根据公式（4），测得Es和Ex后，根据标准溶液的pHs即可求得待测溶液的pHx值。<br>因此我们测得3次已知pH值pHs的缓冲溶液的Es,取其平均值，测得3次待测溶液pHx的Ex,取其平均值，而pHs可知，根据公式(4),我们可以求得待测溶液的pH</p>
+<pre class="line-numbers language-none"><code class="language-none">Es1_tol&#x3D;[float(i) for i in input(&quot;请输入已知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
+Es1&#x3D;0
+for i in range(len(Es1_tol)):
+    Es1&#x3D;Es1+Es1_tol[i]
+Es1&#x3D;Es1&#x2F;3
+Ex1_tol&#x3D;[float(i) for i in input(&quot;请输入未知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
+Ex1&#x3D;0
+for i in range(len(Ex1_tol)):
+    Ex1&#x3D;Ex1+Ex1_tol[i]
+Ex1&#x3D;Ex1&#x2F;3
+pHs&#x3D;3
+T&#x3D;25+273.15
+𝑝𝐻𝑥&#x3D;𝑝𝐻𝑠+(𝐸𝑠1-𝐸𝑥1)&#x2F;(1.984*10E-4*𝑇)
+print(pHx)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color=blue>此处为笔者自己用于实验的数据<br>请输入已知pH值缓冲溶液的电动势，用‘，’分隔：0.210,0.210,0.210<br>请输入未知pH值缓冲溶液的电动势，用‘，’分隔：0.300,0.301,0.300<br>2.8472885662301035</p>
+<p>用醌氢醌电极做正极，银—氯化银电极为负极组成一组电池，同理可得出pHx值，可与上电池所得结果进行比较。</p>
+<pre class="line-numbers language-none"><code class="language-none">Es2_tol&#x3D;[float(i) for i in input(&quot;请输入已知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
+Es2&#x3D;0
+for i in range(len(Es2_tol)):
+    Es2&#x3D;Es2+Es2_tol[i]
+Es2&#x3D;Es2&#x2F;3
+Ex2_tol&#x3D;[float(i) for i in input(&quot;请输入未知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
+Ex2&#x3D;0
+for i in range(len(Ex2_tol)):
+    Ex2&#x3D;Ex2+Ex2_tol[i]
+Ex2&#x3D;Ex2&#x2F;3
+pHs&#x3D;3
+T&#x3D;25+273.15
+𝑝𝐻𝑥&#x3D;𝑝𝐻𝑠+(𝐸𝑠2-𝐸𝑥2)&#x2F;(1.984*10E-4*𝑇)
+print(pHx)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color=blue>此处为笔者自己用于实验的数据<br>请输入已知pH值缓冲溶液的电动势，用‘，’分隔：0.210,0.210,0.210<br>请输入未知pH值缓冲溶液的电动势，用‘，’分隔：0.300,0.301,0.300<br>2.8472885662301035</p>
+<ul>
+<li>而难溶盐的活度积常数可以通过电池电动势的测量来测定，以AgCl为例来说明，将其溶解过程设计为相应的电池。<br>电池电动势为： $ E=\psi_{Ag/AgCl}-\psi_{Ag/Ag^+}=\psi_{Ag/AgCl}^θ-\frac(){RT}{F}<em>Ina_{Cl^-}-(\psi_{Ag/Ag^-}^θ-\frac{RT}{F}</em>In\frac{1}{a_Ag^+})（5） $</li>
+</ul>
+<ul>
+<li>而我们又知道：<script type="math/tex">E^θ=E+\frac{RT}{F}*In{a_{Ag^+}a_{Cl^-}}（6）</script><br>由实验测得电池的电动势E，带入$a_Ag^+$和$a_Cl^-$的值，由（6）式计算出$E^θ$,$a_Ag^+$和$a_Cl^-$由AgNO3和KCl溶液的浓度，并假设<script type="math/tex">\gamma_+$=$\gamma_-$=$\gamma_+-</script>求得，则有：<script type="math/tex; mode=display">RTInKsp=zFE^θ$$  或  $$Ksp=e^{\frac{zFE^θ}{RT}}</script></li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">import numpy as np
+import math
+c_Ag&#x3D;float(input(&quot;请输入Ag离子浓度的值：&quot;))
+c_Cl&#x3D;float(input(&quot;请输入Cl离子浓度的值：&quot;))
+R&#x3D;8.314
+F&#x3D;96487
+T&#x3D;25+273.15
+mu&#x3D;0.5*(c_Ag*1+c_Cl*1)
+def debye_huck(charge1,charge2):
+    return 10**(-(0.51 * abs(charge1*charge2 )* np.sqrt(mu)))
+r&#x3D;debye_huck(1,-1)
+print(r)
+a_Ag&#x3D;c_Ag*r
+a_Cl&#x3D;c_Cl*r
+z&#x3D;1
+Es3_tol&#x3D;[float(i) for i in input(&quot;请输入已知pH值缓冲溶液的电动势，用‘，’分隔：&quot;).split(&#39;,&#39;)]
+Es3&#x3D;0
+for i in range(len(Es3_tol)):
+    Es3&#x3D;Es3+Es3_tol[i]
+Es3&#x3D;Es3&#x2F;3
+𝐸θ&#x3D;𝐸s3+𝑅*𝑇*𝐹*np.log(𝑎_𝐴𝑔+𝑎_𝐶𝑙)
+𝐾𝑠𝑝&#x3D;math.exp(𝑧*𝐸θ&#x2F;(1.984*10E-4*T))
+print(Ksp)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script type="math/tex; mode=display">f = w\_1 x\_1 + w\_2 x\_2\tag{1}</script><script type="math/tex; mode=display">
+\begin{equation}
+e^{i\pi}
+\end{equation}</script>
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
@@ -262,13 +326,18 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2023/11/15/input/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2023/11/15/%E5%BC%B1%E7%94%B5%E8%A7%A3%E8%B4%A8%E7%9A%84%E7%94%B5%E7%A6%BB%E5%B9%B3%E8%A1%A1%E5%B8%B8%E6%95%B0%E7%9A%84%E6%B5%8B%E5%AE%9A/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          input
+          弱电解质的电离平衡常数的测定
         </a>
       
     </div>
     <div>
+      
+        <a href="/2023/11/15/%E4%BA%8C%E5%85%83%E7%9B%B8%E5%9B%BE/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          二元相图
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>
