@@ -1,140 +1,146 @@
-/* eslint-disable no-undef */
-// console.js
-console.log(String.raw`
-          _____                    _____                    _____                    _____          
-         /\    \                  /\    \                  /\    \                  /\    \         
-        /::\____\                /::\    \                /::\    \                /::\    \        
-       /:::/    /               /::::\    \               \:::\    \              /::::\    \       
-      /:::/    /               /::::::\    \               \:::\    \            /::::::\    \      
-     /:::/    /               /:::/\:::\    \               \:::\    \          /:::/\:::\    \     
-    /:::/____/               /:::/__\:::\    \               \:::\    \        /:::/__\:::\    \    
-   /::::\    \              /::::\   \:::\    \               \:::\    \      /::::\   \:::\    \   
-  /::::::\____\________    /::::::\   \:::\    \               \:::\    \    /::::::\   \:::\    \  
- /:::/\:::::::::::\    \  /:::/\:::\   \:::\    \               \:::\    \  /:::/\:::\   \:::\    \ 
-/:::/  |:::::::::::\____\/:::/  \:::\   \:::\____\_______________\:::\____\/:::/__\:::\   \:::\____\
-\::/   |::|~~~|~~~~~     \::/    \:::\  /:::/    /\::::::::::::::::::/    /\:::\   \:::\   \::/    /
- \/____|::|   |           \/____/ \:::\/:::/    /  \::::::::::::::::/____/  \:::\   \:::\   \/____/ 
-       |::|   |                    \::::::/    /    \:::\~~~~\~~~~~~         \:::\   \:::\    \     
-       |::|   |                     \::::/    /      \:::\    \               \:::\   \:::\____\    
-       |::|   |                     /:::/    /        \:::\    \               \:::\   \::/    /    
-       |::|   |                    /:::/    /          \:::\    \               \:::\   \/____/     
-       |::|   |                   /:::/    /            \:::\    \               \:::\    \         
-       \::|   |                  /:::/    /              \:::\____\               \:::\____\        
-        \:|   |                  \::/    /                \::/    /                \::/    /        
-         \|___|                   \/____/                  \/____/                  \/____/         
-see theme at https://github.com/0x4qE/hexo-theme-Kaze
-`);
-// darkmode.js
-// reverse button
-const scrollWidth = document.body.scrollWidth || document.documentElement.scrollWidth;
-let darkControlButton = null;
-if (scrollWidth <= 742) {
-  darkControlButton = document.querySelector('.darkwidget');
-} else {
-  darkControlButton = document.querySelector('.darknavbar');
+// mobile menu
+function registerMobileMenu() {
+  $("#open-menu").click(function () {
+    // set height auto
+    $("#menu-panel").css("height", "auto");
+    // set translate y 0
+    $("#menu-content").css(
+      "transform",
+      "translate(0, 0) rotate(0) skew(0) scaleX(1) scaleY(1)"
+    );
+    $("#open-menu").css("display", "none");
+    $("#close-menu").css("display", "block");
+  });
+
+  $("#close-menu").click(function () {
+    // set height 0
+    $("#menu-panel").css("height", "0");
+    // set translate y -100%
+    $("#menu-content").css(
+      "transform",
+      "translate(0, -100%) rotate(0) skew(0) scaleX(1) scaleY(1)"
+    );
+    $("#open-menu").css("display", "block");
+    $("#close-menu").css("display", "none");
+  });
 }
 
-darkControlButton.addEventListener('click', () => {
-  setDarkmode(reverseDarkModeSetting());
-});
-// scroll-up.js
-const smoothScrollToTop = () => {
-  let yTopValve = (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
-  if (yTopValve > 1) {
-    window.requestAnimationFrame(smoothScrollToTop);
-    scrollTo(0, Math.floor(yTopValve * 0.85));
-  } else {
-    scrollTo(0, 0);
-  }
-};
-setTimeout(() => {
-  document.getElementById('scrollbutton').onclick = smoothScrollToTop;
-}, 0);
-// popbutton.js
-const reversePopButton = () => {
-  const scrollButton = document.getElementById('scrollbutton');
-  const menuButton = document.getElementById('menubutton');
-  const reverseButton = document.getElementById('popbutton');
-  const scrollWidth = document.body.scrollWidth || document.documentElement.scrollWidth;
-  if (scrollButton.style.display === 'flex') {
-    scrollButton.style.bottom = '32px';
-    scrollButton.style.opacity = '0';
-    reverseButton.style.transform = 'none';
-    setTimeout(() => {
-      scrollButton.style.display = 'none';
-    }, 100);
-  } else {
-    scrollButton.style.display = 'flex';
-    reverseButton.style.transform = 'rotate(90deg)';
-    setTimeout(() => {
-      scrollButton.style.bottom = '85px';
-      scrollButton.style.opacity = '1';
-    }, 100);
-  }
-  const mobileToc = document.getElementById('mobiletoc');
-  if (scrollWidth <= 862 && mobileToc) {
-    if (menuButton.style.display === 'flex') {
-      menuButton.style.right = '32px';
-      menuButton.style.opacity = '0';
-      setTimeout(() => {
-        menuButton.style.display = 'none';
-      }, 100);
+// header page title
+function registerHeaderPageTitle() {
+  // 监听文章标题消失时，在header中显示文章标题
+  new IntersectionObserver((entries) => {
+    if (entries[0].intersectionRatio <= 0) {
+      $("#header-title")
+        .css("opacity", "1")
+        .css("transform", "translate(0, 0)")
+        .css("transition", "all 0.3s");
     } else {
-      menuButton.style.display = 'flex';
-      setTimeout(() => {
-        menuButton.style.right = '85px';
-        menuButton.style.opacity = '1';
-      }, 100);
+      $("#header-title")
+        .css("opacity", "0")
+        .css("transform", "translate(0, -100%)")
+        .css("transition", "all 0.3s");
     }
-  }
-  const darkButton = document.querySelector('.darkwidget');
-  if (scrollWidth <= 742) {
-    if (darkButton.style.display === 'flex') {
-      darkButton.style.bottom = '32px';
-      darkButton.style.opacity = '0';
-      darkButton.style.transform = 'none';
-      setTimeout(() => {
-        darkButton.style.display = 'none';
-      }, 100);
-    } else {
-      darkButton.style.display = 'flex';
-      reverseButton.style.transform = 'rotate(90deg)';
-      setTimeout(() => {
-        darkButton.style.bottom = '138px';
-        darkButton.style.opacity = '1';
-      }, 100);
-    }
-  } 
-};
-setTimeout(() => {
-  document.getElementById('popbutton').onclick = reversePopButton;
-}, 0);
-// menuButton.js
-function menuClick(event) {
-  const target = event.target;
-  const mobileToc = document.getElementById('mobiletoc');
-  if (!mobileToc) {
-    return;
-  }
-  if (!mobileToc.contains(target)) {
-    mobileToc.style.display = 'none';
-    document.body.removeChild(mask);
-    document.removeEventListener('click', menuClick);
-  }
+  }).observe($("#article-title")[0], {
+    threshold: 0,
+  });
 }
-const clickMenuButton = () => {
-  const mobileToc = document.getElementById('mobiletoc');
-  if (!mobileToc) {
-    return;
+
+// go top
+function registerGoTop() {
+  const THRESHOLD = 50;
+  const $top = $('.back-to-top');
+  $(window).scroll(function () {
+    $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+    const scrollTop = $(window).scrollTop();
+    const docHeight = $('#content').height();
+    const winHeight = $(window).height();
+    const contentVisibilityHeight = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
+    const scrollPercent = (scrollTop) / (contentVisibilityHeight);
+    const scrollPercentRounded = Math.round(scrollPercent*100);
+    const scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+    $('#scrollpercent>span').html(scrollPercentMaxed);
+  });
+
+  $top.on('click', function () {
+    $('body').velocity('scroll');
+  });
+}
+
+// copy code
+function registerCopyCode() {
+  $("figure.highlight").each(function () {
+    const copyIcon = $(
+      "<iconify-icon id='copy-icon' width='18' icon='carbon:copy'></iconify-icon>"
+    );
+    const leftOffset = 25;
+    // left
+    const left = $(this).width() - leftOffset;
+    // set style
+    $(copyIcon).css("position", "absolute");
+    $(copyIcon).css("left", `${left}px`);
+    $(copyIcon).css("top", "15px");
+    $(copyIcon).css("cursor", "pointer");
+    // add icon
+    $(this).append(copyIcon);
+    // copy code
+    $(copyIcon).click(function () {
+      // .code .line
+      const code = [...$(this).parent().find(".code .line")]
+        .map((line) => line.innerText)
+        .join("\n");
+      // begin copy
+      const textarea = document.createElement("textarea");
+      textarea.value = code;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      var ta = document.createElement("textarea");
+      ta.style.top = window.scrollY + "px"; // Prevent page scrolling
+      ta.style.position = "absolute";
+      ta.style.opacity = "0";
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.append(ta);
+      const selection = document.getSelection();
+      const selected =
+        selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand("copy");
+      // change icon
+      $(this).attr("icon", result ? "carbon:checkmark" : "carbon:error");
+      ta.blur(); // For iOS
+      // blur
+      $(copyIcon).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+      document.body.removeChild(ta);
+      // setTimeout change icon
+      setTimeout(() => {
+        $(this).attr("icon", "carbon:copy");
+      }, 1000); // 1s
+    });
+
+    // listen overflow-x change icon left
+    $(this).scroll(function () {
+      const scrollLeft = $(this).scrollLeft();
+      const iconLeft = $(this).width() - leftOffset + scrollLeft;
+      if (iconLeft > 0) {
+        $(copyIcon).css("left", `${iconLeft}px`);
+      }
+    });
+  });
+}
+
+$(document).ready(function () {
+  registerMobileMenu();
+  registerGoTop();
+  if ($("#article-title").length > 0) {
+    registerHeaderPageTitle();
+    registerCopyCode();
   }
-  mobileToc.style.display = 'block';
-  const mask = document.createElement('div');
-  mask.id = 'mask';
-  document.body.appendChild(mask);
-  setTimeout(() => {
-    document.addEventListener('click', menuClick);
-  }, 0);
-};
-setTimeout(() => {
-  document.getElementById('menubutton').onclick = clickMenuButton;
-}, 0);
+});
