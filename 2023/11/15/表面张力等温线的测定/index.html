@@ -243,8 +243,8 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <h2 id="在这本篇中，我们将绘制表面张力等温线图。"><a href="#在这本篇中，我们将绘制表面张力等温线图。" class="headerlink" title="在这本篇中，我们将绘制表面张力等温线图。"></a>在这本篇中，我们将绘制表面张力等温线图。</h2><ul>
-<li>对于此篇，我们需要用到matplotlib、numpy和scipy库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
+    <h1 id="在这本篇中，我们将绘制表面张力等温线图。"><a href="#在这本篇中，我们将绘制表面张力等温线图。" class="headerlink" title="在这本篇中，我们将绘制表面张力等温线图。"></a>在这本篇中，我们将绘制表面张力等温线图。</h1><h2 id="对于此篇，我们需要用到matplotlib、numpy和scipy库"><a href="#对于此篇，我们需要用到matplotlib、numpy和scipy库" class="headerlink" title="对于此篇，我们需要用到matplotlib、numpy和scipy库"></a>对于此篇，我们需要用到matplotlib、numpy和scipy库</h2><ul>
+<li>我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
 </ul>
 <pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
 import numpy as np
@@ -262,7 +262,8 @@ config &#x3D; &#123;
     &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
 &#125;
 rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):             #计算相关性
+<h2 id="定义函数并计算相关性"><a href="#定义函数并计算相关性" class="headerlink" title="定义函数并计算相关性"></a>定义函数并计算相关性</h2><ul>
+<li>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^{2}$，以此来判断线性拟合的相关程度。<pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):             #计算相关性
     xBar &#x3D; np.mean(X)                     #计算X的平均值
     yBar &#x3D; np.mean(Y)                     #计算Y的平均值
     SSR &#x3D; 0
@@ -279,7 +280,9 @@ rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span>
     print(&quot;r：&quot;, SSR &#x2F; SST, &quot;r-squared：&quot;, (SSR &#x2F; SST) ** 2)
     return
 
-print(matplotlib.matplotlib_fname())    #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br> c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
+print(matplotlib.matplotlib_fname())    #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</li>
+</ul>
 <pre class="line-numbers language-none"><code class="language-none">h &#x3D; [22.9,22.0,18.9,17.7,16.0,14.6,13.4,12.0]
 h &#x3D; np.array(h)
 h &#x3D; h&#x2F;100
@@ -293,9 +296,7 @@ c &#x3D; [0.52,0.90,1.51,1.92,2.40,2.69,3.51,3.62]
 c &#x3D; np.array(c)
 #单位是mol&#x2F;L<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>[0.05907215 0.05675054 0.04875387 0.04565839 0.04127312 0.03766172<br> 0.03456624 0.03095484]</p>
-<ul>
-<li>本实验用泡压法测定表面张力。装置中毛细管口和液面正好相切，液面沿毛细管上升。打开分液漏斗活塞时，漏斗中的水缓慢下滴，使体系中压力减小，毛细管内液面上的压力大于试管中液面压力，压差为△p。在△p作用下，毛细管中液面下降并在管口产生小气泡。小气泡的内外压差也是△p，抽气时，小气泡的内外压差△p不断增加。根据拉普拉斯公式，小气泡能承受的最大压力为：</li>
-</ul>
+<h2 id="以下是一些理论分析"><a href="#以下是一些理论分析" class="headerlink" title="以下是一些理论分析"></a>以下是一些理论分析</h2><p> 本实验用泡压法测定表面张力。装置中毛细管口和液面正好相切，液面沿毛细管上升。打开分液漏斗活塞时，漏斗中的水缓慢下滴，使体系中压力减小，毛细管内液面上的压力大于试管中液面压力，压差为△p。在△p作用下，毛细管中液面下降并在管口产生小气泡。小气泡的内外压差也是△p，抽气时，小气泡的内外压差△p不断增加。根据拉普拉斯公式，小气泡能承受的最大压力为：</p>
 <script type="math/tex; mode=display">△p_{max} = \frac{2\sigma} {r}</script><ul>
 <li>在连续缓慢的抽气过程中，小气泡的曲率半径在不断减小，小气泡的内外压差△p也在不断地增加，当△p和小气泡能承受的最大压力△p<script type="math/tex">_{max}</script>相等时，气泡离开毛细管口。此时的△p为△p<script type="math/tex">_{max}</script>，可由装置中的压力计上读出。</li>
 </ul>
@@ -336,7 +337,8 @@ plt.savefig(&#39;Figure1.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
 plt.show()
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><font color=blue>此处为笔者给的数据<br>[0.00000256 0.00000406 0.000006   0.00000707 0.00000814 0.00000871<br> 0.00001007 0.00001023]<br>Z为<br>[0.00623092 0.00988691 0.01463338 0.01724116 0.01984629 0.02122956<br> 0.02453595 0.02492288]</p>
-<div align=center><img src="https://s2.wzznft.com/i/2023/08/31/qxfgur.png" width = 800 /></div>
+<div align=center><img src="https://free.wzznft.com/i/2023/11/15/ppvh43.png" width = 800 /></div>
+
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">

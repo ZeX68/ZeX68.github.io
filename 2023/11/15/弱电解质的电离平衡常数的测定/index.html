@@ -243,8 +243,8 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <h2 id="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"><a href="#在这本篇中，我们将学习弱电解质的电离平衡常数的测定。" class="headerlink" title="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"></a>在这本篇中，我们将学习弱电解质的电离平衡常数的测定。</h2><ul>
-<li>对于此篇，我们需要用到matplotlib、numpy和scipy等库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
+    <h1 id="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"><a href="#在这本篇中，我们将学习弱电解质的电离平衡常数的测定。" class="headerlink" title="在这本篇中，我们将学习弱电解质的电离平衡常数的测定。"></a>在这本篇中，我们将学习弱电解质的电离平衡常数的测定。</h1><h2 id="对于此篇，我们需要用到matplotlib、numpy和scipy等库"><a href="#对于此篇，我们需要用到matplotlib、numpy和scipy等库" class="headerlink" title="对于此篇，我们需要用到matplotlib、numpy和scipy等库"></a>对于此篇，我们需要用到matplotlib、numpy和scipy等库</h2><ul>
+<li>我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
 </ul>
 <pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
 import numpy as np
@@ -262,7 +262,8 @@ config &#x3D; &#123;
     &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
 &#125;
 rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
+<h2 id="定义函数并计算相关性"><a href="#定义函数并计算相关性" class="headerlink" title="定义函数并计算相关性"></a>定义函数并计算相关性</h2><ul>
+<li>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^{2}$，以此来判断线性拟合的相关程度。<pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
     xBar &#x3D; np.mean(X)
     yBar &#x3D; np.mean(Y)
     SSR &#x3D; 0
@@ -277,7 +278,9 @@ rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span>
 
     SST &#x3D; math.sqrt(varX * varY)
     print(&quot;r：&quot;, SSR &#x2F; SST, &quot;r-squared：&quot;, (SSR &#x2F; SST) ** 2)
-    return<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+    return<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
 <pre class="line-numbers language-none"><code class="language-none">print(matplotlib.matplotlib_fname())
 def runplt(size&#x3D;None):
     plt.figure(figsize&#x3D;(8,5))
@@ -287,12 +290,10 @@ def runplt(size&#x3D;None):
     # plt.axis([0, 4.5,0.03, 0.07])
     # plt.axis([])
     return plt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>(此处输出的是笔者)<br>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
-<ul>
+<p>(此处输出的是笔者瓷片文章的路径)<br>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
+<h2 id="以下是一些理论分析"><a href="#以下是一些理论分析" class="headerlink" title="以下是一些理论分析"></a>以下是一些理论分析</h2><ul>
 <li>电解质溶液是指溶质溶于溶剂后全部或部分电离成离子后形成的溶液，电解质溶液是第二类导体，它依靠离子的定向迁移而导电。</li>
-<li>其导电能力用电导G衡量，为电阻R的倒数，量钢为S（Siemens，西门子）或Ω$^{-1}$，即<div align=center><img src="https://s3.bhimgs.com/i/2023/08/31/t1nne5.png" width = 800 /></div>
-
-</li>
+<li>其导电能力用电导G衡量，为电阻R的倒数，量钢为S（Siemens，西门子）或Ω$^{-1}$，即<script type="math/tex; mode=display">G = \frac{1}{R} = \frac{1}{ρ} \times \frac{A}{l} = κ\frac{A}{l}</script><script type="math/tex; mode=display">κ = \frac{1}{ρ} = \frac{1}{R} \times \frac{l}{A} = G \times \frac{l}{A}</script></li>
 </ul>
 <p>式中κ为电导率，S/m；ρ为电阻率，Ω•m；l为导体的长度，m；A为导体的截面积，m$^{2}$。</p>
 <ul>
@@ -301,8 +302,7 @@ def runplt(size&#x3D;None):
 <ul>
 <li>因此，由已知浓度溶液的电导率，即可求出其摩尔电导率。<br>无限稀释时的摩尔电导率ʌ$_{m}^{∞}$是ʌ$_{m}$在浓度外推到零时的极限值，ʌ$_{m}^{∞}$反映的是全部电离并且离子间没有相互作用时的溶液的导电能力。<br>对于强电解质，在任何浓度下都是全部电离的。<br>对于弱电解质，在一定浓度下是部分电离的，并且电离度随浓度降低不断增加，在无限稀释时全部电离。<br>弱电解质的ʌ$_{m}$反映的是部分电离的溶液的导电能力，如果弱电解质的电离度比较小，电离产生的离子浓度比较低，离子间相互作用可以忽略不计，那么ʌ$_{m}$与ʌ$_{m}^{∞}$的差别就可以近似看成是由部分电离与全部电离的离子数目不同所致，所以弱电解质的电离度$\alpha$可以表示为<script type="math/tex; mode=display">\alpha = \frac{ʌ_{m}}{ʌ_{m}^{∞}}</script></li>
 </ul>
-<p><code>输入实验数据，并处理实验数据。</code></p>
-<pre class="line-numbers language-none"><code class="language-none">c &#x3D; [0.01,0.02,0.03,0.04,0.05]
+<h2 id="输入实验数据，并处理实验数据。"><a href="#输入实验数据，并处理实验数据。" class="headerlink" title="输入实验数据，并处理实验数据。"></a>输入实验数据，并处理实验数据。</h2><pre class="line-numbers language-none"><code class="language-none">c &#x3D; [0.01,0.02,0.03,0.04,0.05]
 c &#x3D; np.array(c)
 c &#x3D; 1000*c
 
@@ -342,7 +342,7 @@ plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span>
 <p>2.657e-08 x - 1.867e-06<br>求导之后得到斜率：</p>
 <p>2.657e-08<br>标准电离平衡常数为斜率除以无限稀薄摩尔电导率的平方：</p>
 <p>1.741e-05</p>
-<div align=center><img src="https://s3.bhimgs.com/i/2023/08/31/stxggq.png" width = 800 /></div>
+<div align=center><img src="https://free.wzznft.com/i/2023/11/15/qhw23p.png" width = 800 /></div>
 
 
   </article>

@@ -243,7 +243,8 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <h2 id="在这本篇中，我们将学习液态蒸气压的测定。"><a href="#在这本篇中，我们将学习液态蒸气压的测定。" class="headerlink" title="在这本篇中，我们将学习液态蒸气压的测定。"></a>在这本篇中，我们将学习液态蒸气压的测定。</h2><p><code>对于此篇，我们需要用到matplotlib、numpy和scipy等库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</code><br><pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
+    <h1 id="在这本篇中，我们将学习液态蒸气压的测定。"><a href="#在这本篇中，我们将学习液态蒸气压的测定。" class="headerlink" title="在这本篇中，我们将学习液态蒸气压的测定。"></a>在这本篇中，我们将学习液态蒸气压的测定。</h1><h2 id="对于此篇，我们需要用到matplotlib、numpy和scipy等库"><a href="#对于此篇，我们需要用到matplotlib、numpy和scipy等库" class="headerlink" title="对于此篇，我们需要用到matplotlib、numpy和scipy等库"></a>对于此篇，我们需要用到matplotlib、numpy和scipy等库</h2><ul>
+<li>我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。<pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
 from matplotlib import rcParams
@@ -258,8 +259,10 @@ config &#x3D; &#123;
     &quot;mathtext.fontset&quot;:&#39;stix&#39;,
     &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
 &#125;
-rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
-<p><code>计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code></p>
+rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="计算相关性"><a href="#计算相关性" class="headerlink" title="计算相关性"></a>计算相关性</h2><p><code>计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code></p>
 <pre class="line-numbers language-none"><code class="language-none">#计算r值
 def rsquared(x, y):
     slope, intercept, r_value, p_value, std_err &#x3D; stats.linregress(x, y)
@@ -268,7 +271,7 @@ def rsquared(x, y):
     
 print(matplotlib.matplotlib_fname())              #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
-<ul>
+<h2 id="理论分析"><a href="#理论分析" class="headerlink" title="理论分析"></a>理论分析</h2><ul>
 <li>在一定温度下，液相中能量足够的分子会克服液态分子间的引力向气相转移，这就是液体的蒸发，当气相中的气态分子失去能量后也会转移至液相，这个过程叫冷凝，液体的蒸发和冷凝是动态的过程，当蒸发速度和冷凝速度相等时，就达气-液两相平衡，两相平衡时液体水的化学势和气态水的化学势相等。</li>
 </ul>
 <ul>
@@ -287,8 +290,7 @@ print(matplotlib.matplotlib_fname())              #获取当前python版本matpl
 <ul>
 <li>改变密闭体系的压力，气液两相将在另一温度和压力下达到平衡状态，这样就可以测量水的沸点和蒸气压关系，然后用ln(p/[p])对1/T作图，求得水在实验温度范围内的平均摩尔蒸发焓<script type="math/tex">(Δ_{vap}H_{m})</script>。</li>
 </ul>
-<p><code>输入实验数据，并处理实验数据。</code></p>
-<pre class="line-numbers language-none"><code class="language-none">#真空度(pa)
+<h2 id="输入实验数据，并处理实验数据。"><a href="#输入实验数据，并处理实验数据。" class="headerlink" title="输入实验数据，并处理实验数据。"></a>输入实验数据，并处理实验数据。</h2><pre class="line-numbers language-none"><code class="language-none">#真空度(pa)
 p1 &#x3D; [-94.25,-91.59,-88.95,-85.35,-83.34,-81.81,-77.23]
 p1 &#x3D; np.array(p1)
 p &#x3D; p1 + 102.83
@@ -324,7 +326,7 @@ plt.legend(loc&#x3D;&#39;upper left&#39;)
 plt.savefig(&#39;饱和蒸气压1.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
 plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>[ 2125.34007268 -2628.0003481     12.62717921]</p>
-<div align=center><img src="https://s3.bhimgs.com/i/2023/09/03/x88n8f.png" width = 800 /></div>
+<div align=center><img src="https://free.wzznft.com/i/2023/11/15/qtffae.png" width = 800 /></div>
 
 <pre class="line-numbers language-none"><code class="language-none">def runplt1(size&#x3D;None):                          #设置绘图的标题、X&#x2F;Y轴等基本信息。
     plt.figure(figsize&#x3D;(8,5))
@@ -351,7 +353,7 @@ plt.show()
 
 numpy.savetxt(&quot;new.csv&quot;, p1 * 1000, delimiter&#x3D;&#39;,&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> <font color=blue><br>-5137 x + 26.28<br>42709.018000000004<br>使用scipy库：a： -5137.445200371161 b： 26.27758767888698 r： -0.9992655568619622 r-squared： 0.9985316531306474</p>
-<div align=center><img src="https://s3.bhimgs.com/i/2023/09/03/x9gnqu.png" width = 800 /></div>
+<div align=center><img src="https://free.wzznft.com/i/2023/11/15/qtfepu.png" width = 800 /></div>
 
   </article>
   <!-- tag -->

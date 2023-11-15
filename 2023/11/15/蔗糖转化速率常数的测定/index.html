@@ -234,7 +234,7 @@
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>1.3k words</span>
+            <span>1.4k words</span>
           </span>
           
         </section>
@@ -243,8 +243,8 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <h2 id="在这本篇中，我们将学习蔗糖转化速率常数的测定。"><a href="#在这本篇中，我们将学习蔗糖转化速率常数的测定。" class="headerlink" title="在这本篇中，我们将学习蔗糖转化速率常数的测定。"></a>在这本篇中，我们将学习蔗糖转化速率常数的测定。</h2><ul>
-<li>对于此篇，我们需要用到matplotlib、numpy和scipy库，我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
+    <h1 id="在这本篇中，我们将学习蔗糖转化速率常数的测定。"><a href="#在这本篇中，我们将学习蔗糖转化速率常数的测定。" class="headerlink" title="在这本篇中，我们将学习蔗糖转化速率常数的测定。"></a>在这本篇中，我们将学习蔗糖转化速率常数的测定。</h1><h2 id="对于此篇，我们需要用到matplotlib、numpy和scipy库"><a href="#对于此篇，我们需要用到matplotlib、numpy和scipy库" class="headerlink" title="对于此篇，我们需要用到matplotlib、numpy和scipy库"></a>对于此篇，我们需要用到matplotlib、numpy和scipy库</h2><ul>
+<li>我们将使用matplotlib库来绘制我们的图形，用numpy库来进行计算和非线性拟合，并使用scipy库的统计包来计算线性拟合的方式。</li>
 </ul>
 <pre class="line-numbers language-none"><code class="language-none">import matplotlib.pyplot as plt
 import numpy as np
@@ -262,7 +262,7 @@ config &#x3D; &#123;
     &quot;font.serif&quot;: [&#39;Times New Roman&#39;],
 &#125;
 rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
+<h2 id="定义函数并判断相关性"><a href="#定义函数并判断相关性" class="headerlink" title="定义函数并判断相关性"></a>定义函数并判断相关性</h2><p><code>定义一个computeCorrelation(X, Y)函数，计算线性回归中的相关性以及R$^&#123;2&#125;$，以此来判断线性拟合的相关程度。</code><br><pre class="line-numbers language-none"><code class="language-none">def computeCorrelation(X, Y):
     xBar &#x3D; np.mean(X)
     yBar &#x3D; np.mean(Y)
     SSR &#x3D; 0
@@ -281,7 +281,7 @@ rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span>
 
 print(matplotlib.matplotlib_fname())                #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
 <p>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
-<ul>
+<h2 id="以下是一些理论分析"><a href="#以下是一些理论分析" class="headerlink" title="以下是一些理论分析"></a>以下是一些理论分析</h2><ul>
 <li>蔗糖水溶液在有氢离子存在时发生水解反应：</li>
 </ul>
 <script type="math/tex; mode=display">C_{12}H_{22}O_{11}(蔗糖) + H_{2}O  \rightarrow C_{6}H_{12}O_{6}(葡萄糖) + C_{6}H_{12}O_{6}(果糖)</script><ul>
@@ -310,7 +310,8 @@ print(matplotlib.matplotlib_fname())                #获取当前python版本mat
 </ul>
 <script type="math/tex; mode=display">\frac{c_{0}}{c_{t}} = \frac{(ɑ_{0}-ɑ_{∞})}{(ɑ_{t}-ɑ_{∞})}</script><p>将上式代入即得：</p>
 <script type="math/tex; mode=display">k = \frac{1}{t}In(\frac{ɑ_{0}-ɑ_{∞}}{ɑ_{t}-ɑ_{∞}})</script><script type="math/tex; mode=display">In(ɑ_{t}-ɑ_{∞}) = -kt + ln(ɑ_{0}-ɑ_{∞})</script><p><script type="math/tex">In(ɑ$_{t}$-ɑ$_{∞}$)</script>对t作图得一直线，由直线的斜率即可算出反应速率常数k。</p>
-<p><code>输入实验数据，并处理实验数据。</code><br><pre class="line-numbers language-none"><code class="language-none">t &#x3D; [5,10,15,20,30,40,50,60]
+<ul>
+<li>输入实验数据，并处理实验数据。<pre class="line-numbers language-none"><code class="language-none">t &#x3D; [5,10,15,20,30,40,50,60]
 
 a &#x3D; [11.20,10.50,9.85,9.20,8.10,6.95,6.05,5.15]
 a &#x3D; np.array(a)
@@ -334,11 +335,13 @@ print(B)                         #得到图像的拟合函数
 D &#x3D; B.deriv()
 print(&#39;求导之后得到斜率：&#39;)
 print(D)                         #得到求导之后的斜率
-computeCorrelation(t, a2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+computeCorrelation(t, a2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
 <p>a修正<br>[14.05 13.35 12.7  12.05 10.95  9.8   8.9   8.  ]<br>at-a\infty<br>[18.65 17.95 17.3  16.65 15.55 14.4  13.5  12.6 ]<br>ln<br>[2.92584615 2.88759011 2.8507065  2.81241022 2.74406064 2.66722821<br> 2.60268969 2.53369681]<br>图像的拟合函数：</p>
 <p>-0.007129 x + 2.958<br>求导之后得到斜率：</p>
 <p>-0.007129<br>r： -0.999760168751737 r-squared： 0.9995203950225017</p>
-<pre class="line-numbers language-none"><code class="language-none">def runplt(size&#x3D;None):                            #设置绘图的标题、X&#x2F;Y轴等基本信息
+<h2 id="绘制图像"><a href="#绘制图像" class="headerlink" title="绘制图像"></a>绘制图像</h2><pre class="line-numbers language-none"><code class="language-none">def runplt(size&#x3D;None):                            #设置绘图的标题、X&#x2F;Y轴等基本信息
     plt.figure(figsize&#x3D;(12,7.5))
     plt.title(r&#39;The Figure of $\ln&#123;(\alpha_&#123;t&#125; - \alpha_&#123;\infty&#125;)&#125;-t$&#39;)
     plt.xlabel(r&#39;$t \  &#x2F; \ \rm&#123;min&#125;$&#39;)
@@ -356,7 +359,8 @@ for X, y in zip(t, a2):
 plt.legend(loc&#x3D;&#39;upper right&#39;)
 plt.savefig(&#39;ffigg.pdf&#39;,bbox_inches&#x3D;&#39;tight&#39;)
 plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div align=center><img src="https://s2.wzznft.com/i/2023/08/31/qrzo3g.png" width = 800 /></div>
+<div align=center><img src="https://free.wzznft.com/i/2023/11/15/qpqndk.png" width = 800 /></div>
+
 
   </article>
   <!-- tag -->
