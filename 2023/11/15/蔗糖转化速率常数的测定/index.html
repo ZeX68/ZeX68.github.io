@@ -224,7 +224,7 @@
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2023-11-15</time>
+            <time>2023-11-20</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
@@ -281,10 +281,12 @@ rcParams.update(config)<span aria-hidden="true" class="line-numbers-rows"><span>
 
 print(matplotlib.matplotlib_fname())                #获取当前python版本matplotlib的配置文件路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
 <p>c:\users\华硕\appdata\local\programs\python\python38\lib\site-packages\matplotlib\mpl-data\matplotlibrc</p>
-<h2 id="以下是一些理论分析"><a href="#以下是一些理论分析" class="headerlink" title="以下是一些理论分析"></a>以下是一些理论分析</h2><ul>
+<h2 id="以下是本实验的原理"><a href="#以下是本实验的原理" class="headerlink" title="以下是本实验的原理"></a>以下是本实验的原理</h2><ul>
 <li>蔗糖水溶液在有氢离子存在时发生水解反应：</li>
 </ul>
-<script type="math/tex; mode=display">C_{12}H_{22}O_{11}(蔗糖) + H_{2}O  \rightarrow C_{6}H_{12}O_{6}(葡萄糖) + C_{6}H_{12}O_{6}(果糖)</script><ul>
+<script type="math/tex; mode=display">C_{12}H_{22}O_{11}(蔗糖) + H_{2}O  \rightarrow C_{6}H_{12}O_{6}(葡萄糖) + C_{6}H_{12}O_{6}(果糖)</script><div align=center><img src="https://s1.wzznft.com/i/2023/11/20/f7zb5g.jpg" width = 800 /></div>
+
+<ul>
 <li>其速率方程为：</li>
 </ul>
 <script type="math/tex; mode=display">-\frac{dc_{C_{12} H_{22} O_{11}}}{dt} = k_{2}c_{C_{12} H_{22} O_{11}}c_{H_{2}O}</script><ul>
@@ -294,11 +296,13 @@ print(matplotlib.matplotlib_fname())                #获取当前python版本mat
 <li>令c<script type="math/tex">_{0}</script>为蔗糖开始的浓度，c$_{t}$为反应t时刻的蔗糖浓度，将上式积分可得到:</li>
 </ul>
 <script type="math/tex; mode=display">ln\frac{c_{0}}{c_{t}} = kt</script><ul>
-<li>只要Inc<script type="math/tex">_{t}</script>对t作图得到直线关系，就可证明蔗糖稀溶液的水解为一级反应，并可从直线的斜率求得速率常数k。<br>当反应物浓度由c<script type="math/tex">_{0}</script>降至c=<script type="math/tex">-\frac{1}{2}$c$_{0}</script>时，所用时间称为反应的半衰期，用t<script type="math/tex">_{1/2}</script>表示: </li>
+<li>只要Inc<script type="math/tex">_{t}</script>对t作图得到直线关系，就可证明蔗糖稀溶液的水解为一级反应，并可从直线的斜率求得速率常数k。<br>当反应物浓度由c<script type="math/tex">_{0}</script>降至c=<script type="math/tex">-\frac{1}{2}$c_{0}</script>时，所用时间称为反应的半衰期，用t<script type="math/tex">_{1/2}</script>表示: </li>
 </ul>
 <script type="math/tex; mode=display">t_{1/2} = \frac{ln2}{k}</script><ul>
 <li>随着反应的进行，蔗糖的浓度逐渐降低至水解完全，即c<script type="math/tex">_{∞}</script>=0，葡萄糖和果糖的浓度逐渐增大，且果糖的左旋程度远大于葡萄糖的右旋程度，所以在水解过程中，溶液的旋光方向将逐渐由右旋变为左旋。</li>
 </ul>
+<div align=center><img src="https://s1.wzznft.com/i/2023/11/20/f7zed7.jpg" width = 800 /></div>
+
 <ul>
 <li>因为：</li>
 </ul>
@@ -309,7 +313,7 @@ print(matplotlib.matplotlib_fname())                #获取当前python版本mat
 <li>联立上面三式，消去K，得：</li>
 </ul>
 <script type="math/tex; mode=display">\frac{c_{0}}{c_{t}} = \frac{(ɑ_{0}-ɑ_{∞})}{(ɑ_{t}-ɑ_{∞})}</script><p>将上式代入即得：</p>
-<script type="math/tex; mode=display">k = \frac{1}{t}In(\frac{ɑ_{0}-ɑ_{∞}}{ɑ_{t}-ɑ_{∞}})</script><script type="math/tex; mode=display">In(ɑ_{t}-ɑ_{∞}) = -kt + ln(ɑ_{0}-ɑ_{∞})</script><p><script type="math/tex">In(ɑ$_{t}$-ɑ$_{∞}$)</script>对t作图得一直线，由直线的斜率即可算出反应速率常数k。</p>
+<script type="math/tex; mode=display">k = \frac{1}{t}In(\frac{ɑ_{0}-ɑ_{∞}}{ɑ_{t}-ɑ_{∞}})</script><script type="math/tex; mode=display">In(ɑ_{t}-ɑ_{∞}) = -kt + ln(ɑ_{0}-ɑ_{∞})</script><p><script type="math/tex">In(ɑ${t}$-ɑ${∞}$)</script>对t作图得一直线，由直线的斜率即可算出反应速率常数k。</p>
 <ul>
 <li>输入实验数据，并处理实验数据。<pre class="line-numbers language-none"><code class="language-none">t &#x3D; [5,10,15,20,30,40,50,60]
 
